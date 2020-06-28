@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Template - Watch</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        input {
-            width: 250px;
-        }
+      input {
+        width: 250px;
+      }
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
-    <xmp>
+  </head>
+  <body>
+    <xmp
+>
       Vue 인스턴스 속성은 e dt mc^2 life cycel 이다.
       Vue 인스턴스 data 와 watch 속성을 학습한다.
 
@@ -35,7 +37,7 @@
         Vue 인스턴스 내부에서 직접 이용되지 않고
         Vue 인스턴스와 data 속성에 주어진 객체 사이에 프록시를 두어 처리한다.
 
-      [참조] page 109~111
+      [참조] page 107~111
 
       문제 1. 각자
         v-on 지시자를 사용하여 input 태그에 값이 입력 될때마다
@@ -44,10 +46,25 @@
         watch 속성을 이용하여 data 속성의 변화를 감지하여 console.log로 출력하시오.
 
     </xmp>
-    <hr>
+    <hr />
     <div id="app">
-        <input type="text" name="message" id="message" v-on:keyup="msgKey">
+      <input type="text" name="message" id="message" v-on:keyup="msgKey" />
     </div>
-
-</body>
+  </body>
 </html>
+
+<!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+  /* edtmc^2w */
+  new Vue({
+    el: "#app",
+    data: {},
+    methods: {
+      msgKey: function (e) {
+        console.log(event.target.value);
+      },
+    },
+  });
+</script>

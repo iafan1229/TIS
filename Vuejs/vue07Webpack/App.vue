@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header-comp></header-comp>
-    
+
     <div class="row">
       <!-- 여기 컨텐츠 -->
       <section id="page1" data-role="page">
@@ -20,7 +20,7 @@ import Footer from "./Footer.vue";
 export default {
   data() {
     return {
-      msg: "Hello VueJS"
+      msg: "Hello, Vue.js!!"
     };
   },
   components: {

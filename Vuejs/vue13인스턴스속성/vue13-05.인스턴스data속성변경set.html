@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        span {
-            font-size: 3em;
-        }
+      span {
+        font-size: 3em;
+      }
     </style>
+  </head>
 
-    
-
-</head>
-
-<body>
+  <body>
     <pre>
 
     data 속성 주의 사항
         인스턴스나 컴포넌트의 data 속성 중에 reference 타입의 값을
         직접 바꾸면 화면에 rendering 이 되지 않음
         즉, this.arr[0]=100; 과 같이 바꾸면 화면의 rendering 되지 않음.
-        data 속성에 있는 reference 타입은 값의 변경시 재할당이 필요하다
+<!--    data 속성에 있는 reference 타입은 값의 변경시 재할당이 필요하다 -->
         # reference 타입에는 Object, Array, Function, ...
 
     왜 data 속성 중에 reference 타입은 재할당 방식으로 처리해야 하는가?
@@ -59,15 +58,47 @@
         (4) [500, 3, 4, 5, 70]   <== 방법4을 적용
 
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
-        <br>
-        <button v-on:click="change1">방법1로 변경</button>
-        <button v-on:click="change2">방법2로 변경</button>
-        <button v-on:click="change3">방법3로 변경</button>
-        <button v-on:click="change4">방법4로 변경</button>
+      <span v-for="(val, i) in arr" v-bind:key="i"> {{val}} </span>
+      <br />
+      <button v-on:click="change1">방법1로 변경</button>
+      <button v-on:click="change2">방법2로 변경</button>
+      <button v-on:click="change3">방법3로 변경</button>
+      <button v-on:click="change4">방법4로 변경</button>
     </div>
-</body>
+  </body>
+</html>
 
-</html>
+<!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      arr: [1, 2, 3, 4, 5],
+    },
+    methods: {
+      change1: function (e) {
+        debugger;
+        this.$data.arr[0] = 100;
+        Vue.set(this.$data.arr, 0, 100);
+        console.log(this.$data.arr); //[100,2,3,4,5]
+      },
+      change2: function (e) {
+        this.$set(this.$data.arr, 1, 300);
+        console.log(this.$data.arr);
+      },
+      change3: function (e) {
+        this.arr.splice(0, 2, 500);
+        console.log(this.$data.arr);
+      },
+      change4: function (e) {
+          var arr_copy = [...this.arr,70];
+          this.$data.arr = arr_copy;
+        console.log(this.$data.arr);
+      },
+    },
+  });
+</script>
